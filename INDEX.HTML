@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>De Arthur para...</title>
+
+<style>
+
+body,html{
+margin:0;
+padding:0;
+font-family:Georgia, serif;
+overflow:hidden;
+background:#f3f0ff;
+color:#3b2e5a;
+}
+
+/* telas */
+
+.tela{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+transition:0.8s;
+opacity:1;
+visibility:visible;
+}
+
+.escondida{
+opacity:0;
+visibility:hidden;
+transform:scale(1.1);
+}
+
+/* fundo */
+
+.banner-topo{
+width:100%;
+height:100vh;
+object-fit:cover;
+position:absolute;
+top:0;
+z-index:-1;
+filter:brightness(0.55) blur(2px);
+}
+
+/* card principal */
+
+.conteudo{
+text-align:center;
+padding:35px;
+background:rgba(255,255,255,0.85);
+border-radius:25px;
+backdrop-filter:blur(8px);
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+border:2px solid #7b5cff;
+animation:aparecer 2s ease;
+}
+
+/* animação */
+
+@keyframes aparecer{
+
+0%{
+opacity:0;
+transform:translateY(40px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* card interno */
+
+.card{
+background:white;
+padding:40px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+max-width:85%;
+}
+
+/* botões */
+
+.botao{
+margin-top:20px;
+padding:14px 40px;
+border:none;
+border-radius:40px;
+font-size:1rem;
+cursor:pointer;
+background:#6a4c93;
+color:white;
+transition:0.3s;
+}
+
+.botao:hover{
+background:#4a2d73;
+transform:translateY(-2px);
+}
+
+/* tela 2 */
+
+#tela2{
+background:linear-gradient(135deg,#6a4c93,#b497ff);
+}
+
+/* tela 3 */
+
+#tela3{
+background:linear-gradient(135deg,#3c2a6e,#8c6bff);
+}
+
+/* galeria */
+
+.galeria{
+display:flex;
+gap:20px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.galeria img{
+width:180px;
+height:180px;
+object-fit:cover;
+border-radius:18px;
+border:4px solid #6a4c93;
+box-shadow:0 6px 18px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+.galeria img:hover{
+transform:scale(1.05);
+}
+
+/* texto romântico */
+
+.texto-romantico{
+margin-top:20px;
+font-size:1.1rem;
+}
+
+/* corações */
+
+.coracao{
+position:fixed;
+top:-20px;
+font-size:20px;
+color:#c2a6ff;
+animation:cair linear forwards;
+pointer-events:none;
+}
+
+@keyframes cair{
+
+0%{
+transform:translateY(0) rotate(0deg);
+opacity:1;
+}
+
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+
+}
+
+/* responsivo celular */
+
+@media (max-width:600px){
+
+.card{
+padding:25px;
+max-width:90%;
+}
+
+.galeria img{
+width:130px;
+height:130px;
+}
+
+h1{
+font-size:1.6rem;
+}
+
+h2{
+font-size:1.4rem;
+}
+
+.botao{
+padding:12px 30px;
+font-size:0.9rem;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- tela 1 -->
+
+<section id="tela1" class="tela">
+
+<img src="foto-capa.jpg" class="banner-topo">
+
+<div class="conteudo">
+
+<h1>Olá, meu amor</h1>
+
+<p>Eu preparei uma pequena surpresa para você.</p>
+
+<button class="botao" onclick="mudarTela('tela1','tela2')">
+Abrir surpresa
+</button>
+
+</div>
+
+</section>
+
+<!-- tela 2 -->
+
+<section id="tela2" class="tela escondida">
+
+<div class="card">
+
+<h2>Feliz aniversário</h2>
+
+<p>
+Hoje você completa 17 anos.
+</p>
+
+<p>
+E eu quis fazer algo simples,
+mas feito com muito carinho para você.
+</p>
+
+<button class="botao" onclick="mudarTela('tela2','tela3')">
+Ver nossas memórias
+</button>
+
+</div>
+
+</section>
+
+<!-- tela 3 -->
+
+<section id="tela3" class="tela escondida">
+
+<div class="card">
+
+<h2>Nossas Memórias</h2>
+
+<div class="galeria">
+
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+<img src="foto3.jpg">
+<img src="foto4.jpg">
+<img src="foto5.jpg">
+<img src="foto6.jpg">
+
+</div>
+
+<p class="texto-romantico">
+
+Aqui você pode escrever uma mensagem especial para ela.
+Algo sobre o quanto ela é importante para você ou alguma memória marcante.
+
+</p>
+
+<button class="botao" onclick="mudarTela('tela3','tela1')">
+Voltar
+</button>
+
+</div>
+
+</section>
+
+<script>
+
+/* troca de telas */
+
+function mudarTela(sair,entrar){
+
+document.getElementById(sair).classList.add("escondida");
+
+setTimeout(()=>{
+
+document.getElementById(entrar).classList.remove("escondida");
+
+if(entrar==="tela3"){
+iniciarCoracoes();
+}
+
+},300);
+
+}
+
+/* corações */
+
+function criarCoracao(){
+
+const coracao=document.createElement("div");
+
+coracao.classList.add("coracao");
+
+coracao.innerHTML="❤";
+
+coracao.style.left=Math.random()*100+"vw";
+
+coracao.style.fontSize=(15+Math.random()*25)+"px";
+
+coracao.style.animationDuration=(4+Math.random()*3)+"s";
+
+document.body.appendChild(coracao);
+
+setTimeout(()=>{
+coracao.remove();
+},7000);
+
+}
+
+function iniciarCoracoes(){
+setInterval(criarCoracao,300);
+}
+
+</script>
+
+</body>
+
+</html>
