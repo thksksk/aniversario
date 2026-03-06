@@ -6,312 +6,257 @@
 <title> 0303🤍 </title>
 
 <style>
-
-body,html{
-margin:0;
-padding:0;
-font-family:Georgia, serif;
-overflow:hidden;
-background:#f3f0ff;
-color:#ffffff;
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, serif;
+    overflow: hidden; /* Mantém travado para evitar barras de rolagem desnecessárias */
+    background: #f3f0ff;
+    color: #ffffff;
 }
 
-.tela{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-transition:0.8s;
-opacity:1;
-visibility:visible;
+.tela {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: 0.8s;
+    opacity: 1;
+    visibility: visible;
 }
 
-.escondida{
-opacity:0;
-visibility:hidden;
-transform:scale(1.05);
+/* Ajuste específico para a Tela 3 permitir rolagem no celular */
+#tela3 {
+    display: block; /* Muda para block para permitir o scroll interno */
+    overflow-y: auto; 
+    padding: 20px 0;
 }
 
-.banner-topo{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-1;
-filter:brightness(0.55) blur(2px);
+/* Centraliza o conteúdo dentro da tela 3 que agora é block */
+#tela3 .card {
+    margin: 40px auto;
 }
 
-/* ALTERADO AQUI */
-.conteudo{
-text-align:center;
-padding:35px;
-background:rgba(255,255,255,0.05); /* transparente */
-border-radius:25px;
-backdrop-filter:blur(8px);
-box-shadow:0 10px 25px rgba(0,0,0,0.25);
-border:2px solid rgba(255,255,255,0.3);
-animation:aparecer 1.5s ease;
-max-width:500px;
-color:white;
+.escondida {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.05);
 }
 
-.card{
-background:white;
-padding:40px;
-border-radius:25px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-max-width:500px;
-color:#3b2e5a;
+.banner-topo {
+    position: fixed; /* Mudado para fixed para cobrir o fundo mesmo no scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.45) blur(4px); /* Aumentei um pouco o blur para o texto ler melhor */
 }
 
-@keyframes aparecer{
-0%{
-opacity:0;
-transform:translateY(40px);
-}
-100%{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-.botao{
-margin-top:20px;
-padding:14px 40px;
-border:none;
-border-radius:40px;
-font-size:1rem;
-cursor:pointer;
-background:#6a4c93;
-color:white;
-transition:0.3s;
+.conteudo {
+    text-align: center;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 25px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: aparecer 1.5s ease;
+    max-width: 500px;
+    color: white;
+    margin: 20px;
 }
 
-.botao:hover{
-background:#4a2d73;
-transform:translateY(-2px);
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    max-width: 500px;
+    color: #3b2e5a;
+    margin: 20px;
 }
 
-#tela2{
-background:linear-gradient(135deg,#6a4c93,#b497ff);
+@keyframes aparecer {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
-#tela3{
-background:linear-gradient(135deg,#3c2a6e,#8c6bff);
+.botao {
+    margin-top: 20px;
+    padding: 14px 40px;
+    border: none;
+    border-radius: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #6a4c93;
+    color: white;
+    transition: 0.3s;
 }
 
-.galeria{
-display:flex;
-gap:20px;
-justify-content:center;
-flex-wrap:wrap;
-margin-top:20px;
+.botao:hover {
+    background: #4a2d73;
+    transform: translateY(-2px);
 }
 
-.galeria img{
-width:170px;
-height:170px;
-object-fit:cover;
-border-radius:18px;
-border:4px solid #6a4c93;
-box-shadow:0 6px 18px rgba(0,0,0,0.25);
-transition:0.3s;
+#tela2 {
+    background: linear-gradient(135deg, #6a4c93, #b497ff);
 }
 
-.galeria img:hover{
-transform:scale(1.05);
+/* Removido o gradiente fixo do ID tela3 para usar a imagem de fundo */
+
+.galeria {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
-.texto-romantico{
-margin-top:20px;
-font-size:1.1rem;
+.galeria img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 4px solid #6a4c93;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    transition: 0.3s;
 }
 
-.coracao{
-position:fixed;
-top:-20px;
-font-size:20px;
-color:#c2a6ff;
-animation:cair linear forwards;
-pointer-events:none;
+.texto-romantico {
+    margin-top: 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: justify;
 }
 
-@keyframes cair{
-0%{
-transform:translateY(0) rotate(0deg);
-opacity:1;
-}
-100%{
-transform:translateY(110vh) rotate(360deg);
-opacity:0;
-}
-}
-
-@media (max-width:600px){
-
-.card{
-padding:25px;
-max-width:90%;
+.coracao {
+    position: fixed;
+    top: -20px;
+    font-size: 20px;
+    color: #c2a6ff;
+    animation: cair linear forwards;
+    pointer-events: none;
+    z-index: 999;
 }
 
-.galeria img{
-width:120px;
-height:120px;
+@keyframes cair {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
-h1{
-font-size:1.6rem;
+@media (max-width: 600px) {
+    .card {
+        padding: 20px;
+        max-width: 85%;
+    }
+    .galeria img {
+        width: 100px;
+        height: 100px;
+    }
+    h1 { font-size: 1.4rem; }
+    h2 { font-size: 1.3rem; }
+    .botao { padding: 10px 25px; font-size: 0.9rem; }
+    .texto-romantico { font-size: 0.95rem; }
 }
-
-h2{
-font-size:1.4rem;
-}
-
-.botao{
-padding:12px 30px;
-font-size:0.9rem;
-}
-
-}
-
 </style>
 </head>
 
 <body>
 
 <section id="tela1" class="tela">
-
-<img src="foto-capa.jpg" class="banner-topo">
-
-<div class="conteudo">
-
-<h1>Para o Grande amor da minha vida.</h1>
-
-<p>
-Com muito carinho (e um pouco de trabalho) programei esse presente pra você
-</p>
-
-<button class="botao" onclick="mudarTela('tela1','tela2')">
-Abrir surpresa
-</button>
-
-</div>
-
+    <img src="foto-capa.jpg" class="banner-topo">
+    <div class="conteudo">
+        <h1>Para o Grande amor da minha vida.</h1>
+        <p>Com muito carinho (e um pouco de trabalho) programei esse presente pra você</p>
+        <button class="botao" onclick="mudarTela('tela1','tela2')">Abrir surpresa</button>
+    </div>
 </section>
 
 <section id="tela2" class="tela escondida">
-
-<div class="card">
-
-<h2>Feliz aniversário</h2>
-
-<p>Agora você está na véspera da idade adulta</p>
-
-<p>
-e eu quis fazer algo simples, mas feito com muito carinho para ficar guardado na memória..
-</p>
-
-<button class="botao" onclick="mudarTela('tela2','tela3')">
-Ver nossos momentos 
-</button>
-
-</div>
-
+    <div class="card">
+        <h2>Feliz aniversário</h2>
+        <p>Agora você está na véspera da idade adulta</p>
+        <p>e eu quis fazer algo simples, mas feito com muito carinho para ficar guardado na memória..</p>
+        <button class="botao" onclick="mudarTela('tela2','tela3')">Ver nossos momentos</button>
+    </div>
 </section>
 
 <section id="tela3" class="tela escondida">
+    <img src="foto-capa.jpg" class="banner-topo">
+    
+    <div class="card">
+        <h2>"NÓS🤍"</h2>
+        <div class="galeria">
+            <img src="foto1.jpg">
+            <img src="foto2.jpg">
+            <img src="foto3.jpg">
+            <img src="foto4.jpg">
+            <img src="foto5.jpg">
+            <img src="foto6.jpg">
+            <img src="foto7.jpg">
+        </div>
 
-<div class="card">
+        <p class="texto-romantico">
+            Desde o dia que te conheci, eu tive a certeza de quem seria o amor da minha vida inteira, 
+            e hoje posso prestigiar esse grande momento do seus quase 18 anos. Hoje vejo suas evoluções, 
+            o quão mais madura se tornou, e a cada dia a minha certeza que você vai ser a mãe dos meus filhos aumenta. 
+            Fiz esse presente na intenção de ser único, esse "site" foi feito só pra uma pessoa, a que me alegra todos os dias, 
+            que purifica minha paz, que melhora todos os meus dias, que me estressa as vezes.. Mas o mais importante é que o 
+            nosso amor só cresce cada vez mais. Quero te agradecer por tudo que fez e faz por mim, por todos os momentos, até 
+            de brigas, porque querendo ou não estamos aprendendo a conviver sempre melhor um com o outro, e eu espero que goste 
+            do seu tão misterioso presente. Eu te amo eternamente meu amor, obrigada por tudo. <br><br><b>FELIZ SABOOORR IDADE ADULTA🤍</b>
+        </p>
 
-<h2>"NÓS🤍"</h2>
-
-<div class="galeria">
-
-<img src="foto1.jpg">
-<img src="foto2.jpg">
-<img src="foto3.jpg">
-<img src="foto4.jpg">
-<img src="foto5.jpg">
-<img src="foto6.jpg">
-<img src="foto7.jpg">
-
-</div>
-
-<p class="texto-romantico">
-
-Des do dia que te conheci, eu tive a certeza de quem seria o amor da minha vida inteira,
-  e hoje posso prestigiar esse grande momnento do seus quase 18 anos, hoje vejo suas evoluções,
-  o quao mais madura se tornou, e a cada dia a minha certeza que você vai ser a mãe dos meus filhos aumenta.
-  Fiz esse presente na intenção de ser único, esse "site" foi feito só pra uma pessoa, a que me alegra todos os dias
-  que purifica minha paz, que melhora todos os meu dias, que me estressa as vezes.. Mas o mais importante é que o
-  nossso amor só cresce cada vez mais. Quero te agradecer por tudo que fez e faz por mim, por todos os momentos, até
-  de brigas, pq querendo ou não estamos aprendendo a conviver sempre melhor um com o outro, e eu espero que goste
-  do seu tão misterioso presente, eu te amo eternamente meu amor, obrigada por tudo. FELIZ SABOOORR IDADE ADULTA🤍
-
-</p>
-
-<button class="botao" onclick="mudarTela('tela3','tela1')">
-Voltar
-</button>
-
-</div>
-
+        <button class="botao" onclick="mudarTela('tela3','tela1')">Voltar</button>
+    </div>
 </section>
 
 <script>
+function mudarTela(sair, entrar) {
+    document.getElementById(sair).classList.add("escondida");
+    
+    // Se sair da tela 3, volta o scroll para o topo para a próxima vez que abrir
+    if(sair === 'tela3') {
+        document.getElementById('tela3').scrollTop = 0;
+    }
 
-function mudarTela(sair,entrar){
-
-document.getElementById(sair).classList.add("escondida");
-
-setTimeout(function(){
-
-document.getElementById(entrar).classList.remove("escondida");
-
-if(entrar==="tela3"){
-iniciarCoracoes();
+    setTimeout(function() {
+        document.getElementById(entrar).classList.remove("escondida");
+        if(entrar === "tela3") {
+            iniciarCoracoes();
+        }
+    }, 300);
 }
 
-},300);
+function criarCoracao() {
+    const coracao = document.createElement("div");
+    coracao.classList.add("coracao");
+    coracao.innerHTML = "🤍";
+    coracao.style.left = Math.random() * 100 + "vw";
+    coracao.style.fontSize = (15 + Math.random() * 25) + "px";
+    coracao.style.animationDuration = (4 + Math.random() * 3) + "s";
+    document.body.appendChild(coracao);
 
+    setTimeout(function() {
+        coracao.remove();
+    }, 7000);
 }
 
-function criarCoracao(){
-
-const coracao=document.createElement("div");
-
-coracao.classList.add("coracao");
-
-coracao.innerHTML="🤍";
-
-coracao.style.left=Math.random()*100+"vw";
-
-coracao.style.fontSize=(15+Math.random()*25)+"px";
-
-coracao.style.animationDuration=(4+Math.random()*3)+"s";
-
-document.body.appendChild(coracao);
-
-setTimeout(function(){
-coracao.remove();
-},7000);
-
+let intervaloCoracoes;
+function iniciarCoracoes() {
+    if(!intervaloCoracoes) {
+        intervaloCoracoes = setInterval(criarCoracao, 300);
+    }
 }
-
-function iniciarCoracoes(){
-setInterval(criarCoracao,300);
-}
-
 </script>
 
 </body>
 </html>
-
