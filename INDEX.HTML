@@ -3,12 +3,13 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>De Arthur para...</title>
 
 <style>
+
+/* configuração geral */
 
 body,html{
 margin:0;
@@ -28,10 +29,9 @@ left:0;
 width:100%;
 height:100vh;
 display:flex;
-align-items:flex-end;
+align-items:center;
 justify-content:center;
 flex-direction:column;
-padding-bottom:120px;
 transition:0.8s;
 opacity:1;
 visibility:visible;
@@ -40,22 +40,23 @@ visibility:visible;
 .escondida{
 opacity:0;
 visibility:hidden;
-transform:scale(1.1);
+transform:scale(1.05);
 }
 
-/* fundo */
+/* fundo da primeira tela */
 
 .banner-topo{
-width:100%;
-height:100vh;
-object-fit:cover;
 position:absolute;
 top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
 z-index:-1;
 filter:brightness(0.55) blur(2px);
 }
 
-/* card principal */
+/* caixas de conteúdo */
 
 .conteudo{
 text-align:center;
@@ -65,7 +66,17 @@ border-radius:25px;
 backdrop-filter:blur(8px);
 box-shadow:0 10px 25px rgba(0,0,0,0.15);
 border:2px solid #7b5cff;
-animation:aparecer 2s ease;
+animation:aparecer 1.5s ease;
+max-width:500px;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+max-width:500px;
 }
 
 /* animação */
@@ -82,17 +93,6 @@ opacity:1;
 transform:translateY(0);
 }
 
-}
-
-/* card interno */
-
-.card{
-background:white;
-padding:40px;
-border-radius:25px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-max-width:85%;
 }
 
 /* botões */
@@ -114,16 +114,16 @@ background:#4a2d73;
 transform:translateY(-2px);
 }
 
-/* tela 2 */
+/* telas coloridas */
 
 #tela2{
 background:linear-gradient(135deg,#6a4c93,#b497ff);
+color:white;
 }
-
-/* tela 3 */
 
 #tela3{
 background:linear-gradient(135deg,#3c2a6e,#8c6bff);
+color:white;
 }
 
 /* galeria */
@@ -137,8 +137,8 @@ margin-top:20px;
 }
 
 .galeria img{
-width:180px;
-height:180px;
+width:170px;
+height:170px;
 object-fit:cover;
 border-radius:18px;
 border:4px solid #6a4c93;
@@ -150,7 +150,7 @@ transition:0.3s;
 transform:scale(1.05);
 }
 
-/* texto romântico */
+/* texto */
 
 .texto-romantico{
 margin-top:20px;
@@ -182,7 +182,7 @@ opacity:0;
 
 }
 
-/* responsivo celular */
+/* responsivo */
 
 @media (max-width:600px){
 
@@ -192,8 +192,8 @@ max-width:90%;
 }
 
 .galeria img{
-width:130px;
-height:130px;
+width:120px;
+height:120px;
 }
 
 h1{
@@ -217,7 +217,7 @@ font-size:0.9rem;
 
 <body>
 
-<!-- tela 1 -->
+<!-- TELA 1 -->
 
 <section id="tela1" class="tela">
 
@@ -227,7 +227,9 @@ font-size:0.9rem;
 
 <h1>Olá, meu amor</h1>
 
-<p>Eu preparei uma pequena surpresa para você.</p>
+<p>
+Com muito carinho (e um pouco de trabalho) fiz esse presente para você.
+</p>
 
 <button class="botao" onclick="mudarTela('tela1','tela2')">
 Abrir surpresa
@@ -237,7 +239,7 @@ Abrir surpresa
 
 </section>
 
-<!-- tela 2 -->
+<!-- TELA 2 -->
 
 <section id="tela2" class="tela escondida">
 
@@ -245,13 +247,10 @@ Abrir surpresa
 
 <h2>Feliz aniversário</h2>
 
-<p>
-Hoje você completa 17 anos.
-</p>
+<p>Hoje você completa 17 anos.</p>
 
 <p>
-E eu quis fazer algo simples,
-mas feito com muito carinho para você.
+Quis fazer algo simples, mas feito com muito carinho para você.
 </p>
 
 <button class="botao" onclick="mudarTela('tela2','tela3')">
@@ -262,7 +261,7 @@ Ver nossas memórias
 
 </section>
 
-<!-- tela 3 -->
+<!-- TELA 3 -->
 
 <section id="tela3" class="tela escondida">
 
@@ -285,7 +284,7 @@ Ver nossas memórias
 <p class="texto-romantico">
 
 Aqui você pode escrever uma mensagem especial para ela.
-Algo sobre o quanto ela é importante para você ou alguma memória marcante.
+Algo sobre o quanto ela é importante para você ou uma memória marcante.
 
 </p>
 
@@ -299,13 +298,13 @@ Voltar
 
 <script>
 
-/* troca de telas */
+/* trocar telas */
 
 function mudarTela(sair,entrar){
 
 document.getElementById(sair).classList.add("escondida");
 
-setTimeout(()=>{
+setTimeout(function(){
 
 document.getElementById(entrar).classList.remove("escondida");
 
@@ -335,7 +334,7 @@ coracao.style.animationDuration=(4+Math.random()*3)+"s";
 
 document.body.appendChild(coracao);
 
-setTimeout(()=>{
+setTimeout(function(){
 coracao.remove();
 },7000);
 
@@ -348,5 +347,4 @@ setInterval(criarCoracao,300);
 </script>
 
 </body>
-
 </html>
