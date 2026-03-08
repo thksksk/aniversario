@@ -110,8 +110,6 @@ body, html {
     background: linear-gradient(135deg, #6a4c93, #b497ff);
 }
 
-/* Removido o gradiente fixo do ID tela3 para usar a imagem de fundo */
-
 .galeria {
     display: flex;
     gap: 15px;
@@ -145,6 +143,45 @@ body, html {
     animation: cair linear forwards;
     pointer-events: none;
     z-index: 999;
+}
+
+/* ESTILOS DO CONTADOR */
+.contador-container {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f5ff;
+    border-radius: 20px;
+    border: 1px solid #e0d4f7;
+}
+
+.contador-titulo {
+    font-size: 0.9rem;
+    color: #6a4c93;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.contador-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.tempo-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.tempo-valor {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #6a4c93;
+}
+
+.tempo-label {
+    font-size: 0.7rem;
+    color: #b497ff;
 }
 
 @keyframes cair {
@@ -215,15 +252,46 @@ body, html {
             do seu tão misterioso presente. Eu te amo eternamente meu amor, obrigada por tudo. <br><br><b>FELIZ SABOOORR IDADE ADULTA🤍</b>
         </p>
 
-        <button class="botao" onclick="mudarTela('tela3','tela1')">Voltar</button>
+        <div class="contador-container">
+            <div class="contador-titulo">Tempo que nossa história começou:</div>
+            <div class="contador-grid">
+                <div class="tempo-box"><span class="tempo-valor" id="dias">0</span><span class="tempo-label">Dias</span></div>
+                <div class="tempo-box"><span class="tempo-valor" id="horas">0</span><span class="tempo-label">Horas</span></div>
+                <div class="tempo-box"><span class="tempo-valor" id="minutos">0</span><span class="tempo-label">Min</span></div>
+                <div class="tempo-box"><span class="tempo-valor" id="segundos">0</span><span class="tempo-label">Seg</span></div>
+            </div>
+        </div>
+
+        <button class="botao" style="margin-top: 30px;" onclick="mudarTela('tela3','tela1')">Voltar</button>
     </div>
 </section>
 
 <script>
+// CONFIGURAÇÃO DA DATA: (Ano, Mês-1, Dia, Hora, Minuto)
+// Exemplo: Se foi 15 de Março de 2024 às 14:00, use: new Date(2024, 2, 15, 14, 0, 0)
+const dataConhecemos = new Date(2023, 2, 3, 0, 0, 0); 
+
+function atualizarContador() {
+    const agora = new Date();
+    const dif = agora - dataConhecemos;
+
+    const d = Math.floor(dif / (1000 * 60 * 60 * 24));
+    const h = Math.floor((dif % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((dif % (1000 * 60)) / 1000);
+
+    document.getElementById('dias').innerText = d;
+    document.getElementById('horas').innerText = h;
+    document.getElementById('minutos').innerText = m;
+    document.getElementById('segundos').innerText = s;
+}
+
+setInterval(atualizarContador, 1000);
+atualizarContador();
+
 function mudarTela(sair, entrar) {
     document.getElementById(sair).classList.add("escondida");
     
-    // Se sair da tela 3, volta o scroll para o topo para a próxima vez que abrir
     if(sair === 'tela3') {
         document.getElementById('tela3').scrollTop = 0;
     }
