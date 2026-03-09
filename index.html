@@ -266,14 +266,14 @@ body, html {
             <div id="countdown-niver" class="proximo-niver"></div>
         </div>
 
-        <div class="musica-container">
-            <button class="botao" id="btnMusica" onclick="controlarMusica()" style="margin-top: 0; padding: 10px 25px;">
-                Play Música 🎵
-            </button>
-            <audio id="musicaRelacionamento" loop>
-                <source src="nossa-musica.mp3" type="audio/mpeg">
-            </audio>
-        </div>
+        <div class="musica-container" style="margin-top: 25px; padding: 10px; background: rgba(189, 178, 255, 0.2); border-radius: 50px; border: 1px solid #bdb2ff; display: inline-block;">
+    <button class="botao" id="btnMusica" onclick="controlarMusica()" style="margin-top: 0; padding: 10px 25px;">
+        Play Música 🎵
+    </button>
+    <audio id="musicaRelacionamento" preload="auto" loop>
+        <source src="nossa-musica.mp3" type="audio/mpeg">
+    </audio>
+</div>
 
         <button class="botao" style="display: block; margin: 30px auto 0;" onclick="mudarTela('tela3','tela1')">Voltar</button>
     </div>
@@ -353,3 +353,4 @@ function iniciarCoracoes() {
 
 </body>
 </html>
+
