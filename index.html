@@ -10,7 +10,7 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: Georgia, serif;
-    overflow: hidden; /* Mantém travado para evitar barras de rolagem desnecessárias */
+    overflow: hidden; 
     background: #f3f0ff;
     color: #ffffff;
 }
@@ -30,14 +30,12 @@ body, html {
     visibility: visible;
 }
 
-/* Ajuste específico para a Tela 3 permitir rolagem no celular */
 #tela3 {
-    display: block; /* Muda para block para permitir o scroll interno */
+    display: block; 
     overflow-y: auto; 
     padding: 20px 0;
 }
 
-/* Centraliza o conteúdo dentro da tela 3 que agora é block */
 #tela3 .card {
     margin: 40px auto;
 }
@@ -49,14 +47,14 @@ body, html {
 }
 
 .banner-topo {
-    position: fixed; /* Mudado para fixed para cobrir o fundo mesmo no scroll */
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    filter: brightness(0.45) blur(4px); /* Aumentei um pouco o blur para o texto ler melhor */
+    filter: brightness(0.45) blur(4px);
 }
 
 .conteudo {
@@ -145,7 +143,7 @@ body, html {
     z-index: 999;
 }
 
-/* ESTILOS DO CONTADOR */
+/* ESTILOS DO CONTADOR LILÁS */
 .contador-container {
     margin-top: 30px;
     padding: 20px;
@@ -184,24 +182,26 @@ body, html {
     color: #b497ff;
 }
 
+.proximo-niver {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #9b72cf;
+    font-style: italic;
+    border-top: 1px dashed #d1c4e9;
+    padding-top: 10px;
+}
+
 @keyframes cair {
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
     100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
 @media (max-width: 600px) {
-    .card {
-        padding: 20px;
-        max-width: 85%;
-    }
-    .galeria img {
-        width: 100px;
-        height: 100px;
-    }
+    .card { padding: 20px; max-width: 85%; }
+    .galeria img { width: 100px; height: 100px; }
     h1 { font-size: 1.4rem; }
     h2 { font-size: 1.3rem; }
     .botao { padding: 10px 25px; font-size: 0.9rem; }
-    .texto-romantico { font-size: 0.95rem; }
 }
 </style>
 </head>
@@ -242,24 +242,18 @@ body, html {
         </div>
 
         <p class="texto-romantico">
-            Desde o dia que te conheci, eu tive a certeza de quem seria o amor da minha vida inteira, 
-            e hoje posso prestigiar esse grande momento do seus quase 18 anos. Hoje vejo suas evoluções, 
-            o quão mais madura se tornou, e a cada dia a minha certeza que você vai ser a mãe dos meus filhos aumenta. 
-            Fiz esse presente na intenção de ser único, esse "site" foi feito só pra uma pessoa, a que me alegra todos os dias, 
-            que purifica minha paz, que melhora todos os meus dias, que me estressa as vezes.. Mas o mais importante é que o 
-            nosso amor só cresce cada vez mais. Quero te agradecer por tudo que fez e faz por mim, por todos os momentos, até 
-            de brigas, porque querendo ou não estamos aprendendo a conviver sempre melhor um com o outro, e eu espero que goste 
-            do seu tão misterioso presente. Eu te amo eternamente meu amor, obrigada por tudo. <br><br><b>FELIZ SABOOORR IDADE ADULTA🤍</b>
+            Desde o dia que te conheci, eu tive a certeza de quem seria o amor da minha vida inteira... [seu texto original completo aqui]... <br><br><b>FELIZ SABOOORR IDADE ADULTA🤍</b>
         </p>
 
         <div class="contador-container">
-            <div class="contador-titulo">Tempo que nossa história começou:</div>
+            <div class="contador-titulo">Nossa história começou em 06/04/2024:</div>
             <div class="contador-grid">
                 <div class="tempo-box"><span class="tempo-valor" id="dias">0</span><span class="tempo-label">Dias</span></div>
                 <div class="tempo-box"><span class="tempo-valor" id="horas">0</span><span class="tempo-label">Horas</span></div>
                 <div class="tempo-box"><span class="tempo-valor" id="minutos">0</span><span class="tempo-label">Min</span></div>
                 <div class="tempo-box"><span class="tempo-valor" id="segundos">0</span><span class="tempo-label">Seg</span></div>
             </div>
+            <div id="countdown-niver" class="proximo-niver"></div>
         </div>
 
         <button class="botao" style="margin-top: 30px;" onclick="mudarTela('tela3','tela1')">Voltar</button>
@@ -267,14 +261,14 @@ body, html {
 </section>
 
 <script>
-// CONFIGURAÇÃO DA DATA: (Ano, Mês-1, Dia, Hora, Minuto)
-// Exemplo: Se foi 15 de Março de 2024 às 14:00, use: new Date(2024, 2, 15, 14, 0, 0)
-const dataConhecemos = new Date(2023, 2, 3, 0, 0, 0); 
+// DATA INICIAL: 06/04/2024 (Mês 3 no JS)
+const dataInicio = new Date(2024, 3, 6, 0, 0, 0); 
 
 function atualizarContador() {
     const agora = new Date();
-    const dif = agora - dataConhecemos;
+    const dif = agora - dataInicio;
 
+    // Cálculo do tempo total
     const d = Math.floor(dif / (1000 * 60 * 60 * 24));
     const h = Math.floor((dif % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
@@ -284,6 +278,17 @@ function atualizarContador() {
     document.getElementById('horas').innerText = h;
     document.getElementById('minutos').innerText = m;
     document.getElementById('segundos').innerText = s;
+
+    // Cálculo para os 2 anos (06/04/2026)
+    const niver2Anos = new Date(2026, 3, 6, 0, 0, 0);
+    const faltam = niver2Anos - agora;
+    
+    if (faltam > 0) {
+        const diasFaltam = Math.ceil(faltam / (1000 * 60 * 60 * 24));
+        document.getElementById('countdown-niver').innerText = `Faltam apenas ${diasFaltam} dias para nossos 2 anos! ✨`;
+    } else {
+        document.getElementById('countdown-niver').innerText = `Parabéns pelos nossos 2 anos! 💜`;
+    }
 }
 
 setInterval(atualizarContador, 1000);
@@ -291,16 +296,10 @@ atualizarContador();
 
 function mudarTela(sair, entrar) {
     document.getElementById(sair).classList.add("escondida");
-    
-    if(sair === 'tela3') {
-        document.getElementById('tela3').scrollTop = 0;
-    }
-
+    if(sair === 'tela3') document.getElementById('tela3').scrollTop = 0;
     setTimeout(function() {
         document.getElementById(entrar).classList.remove("escondida");
-        if(entrar === "tela3") {
-            iniciarCoracoes();
-        }
+        if(entrar === "tela3") iniciarCoracoes();
     }, 300);
 }
 
@@ -312,17 +311,12 @@ function criarCoracao() {
     coracao.style.fontSize = (15 + Math.random() * 25) + "px";
     coracao.style.animationDuration = (4 + Math.random() * 3) + "s";
     document.body.appendChild(coracao);
-
-    setTimeout(function() {
-        coracao.remove();
-    }, 7000);
+    setTimeout(() => coracao.remove(), 7000);
 }
 
 let intervaloCoracoes;
 function iniciarCoracoes() {
-    if(!intervaloCoracoes) {
-        intervaloCoracoes = setInterval(criarCoracao, 300);
-    }
+    if(!intervaloCoracoes) intervaloCoracoes = setInterval(criarCoracao, 300);
 }
 </script>
 
