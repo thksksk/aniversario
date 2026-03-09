@@ -191,6 +191,16 @@ body, html {
     padding-top: 10px;
 }
 
+/* ESTILO DO PLAYER */
+.musica-container {
+    margin-top: 25px;
+    padding: 10px;
+    background: rgba(189, 178, 255, 0.2);
+    border-radius: 50px;
+    border: 1px solid #bdb2ff;
+    display: inline-block;
+}
+
 @keyframes cair {
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
     100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
@@ -242,7 +252,7 @@ body, html {
         </div>
 
         <p class="texto-romantico">
-              Desde o dia que te conheci, eu tive a certeza de quem seria o amor da minha vida inteira, e hoje posso prestigiar esse grande momento do seus quase 18 anos. Hoje vejo suas evoluções, o quão mais madura se tornou, e a cada dia a minha certeza que você vai ser a mãe dos meus filhos aumenta. Fiz esse presente na intenção de ser único, esse "site" foi feito só pra uma pessoa, a que me alegra todos os dias, que purifica minha paz, que melhora todos os meus dias, que me estressa as vezes.. Mas o mais importante é que o nosso amor só cresce cada vez mais. Quero te agradecer por tudo que fez e faz por mim, por todos os momentos, até de brigas, porque querendo ou não estamos aprendendo a conviver sempre melhor um com o outro, e eu espero que goste do seu tão misterioso presente. Eu te amo eternamente meu amor, obrigada por tudo. <br><br><b>FELIZ SABOOORR IDADE ADULTA🤍 
+            Desde o dia que te conheci, eu tive a certeza de quem seria o amor da minha vida inteira, e hoje posso prestigiar esse grande momento do seus quase 18 anos. Hoje vejo suas evoluções, o quão mais madura se tornou, e a cada dia a minha certeza que você vai ser a mãe dos meus filhos aumenta. Fiz esse presente na intenção de ser único, esse "site" foi feito só pra uma pessoa, a que me alegra todos os dias, que purifica minha paz, que melhora todos os meus dias, que me estressa as vezes.. Mas o mais importante é que o nosso amor só cresce cada vez mais. Quero te agradecer por tudo que fez e faz por mim, por todos os momentos, até de brigas, porque querendo ou não estamos aprendendo a conviver sempre melhor um com o outro, e eu espero que goste do seu tão misterioso presente. Eu te amo eternamente meu amor, obrigada por tudo. <br><br><b>FELIZ SABOOORR IDADE ADULTA🤍</b>
         </p>
 
         <div class="contador-container">
@@ -256,19 +266,25 @@ body, html {
             <div id="countdown-niver" class="proximo-niver"></div>
         </div>
 
-        <button class="botao" style="margin-top: 30px;" onclick="mudarTela('tela3','tela1')">Voltar</button>
+        <div class="musica-container">
+            <button class="botao" id="btnMusica" onclick="controlarMusica()" style="margin-top: 0; padding: 10px 25px;">
+                Play Música 🎵
+            </button>
+            <audio id="musicaRelacionamento" loop>
+                <source src="nossa-musica.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <button class="botao" style="display: block; margin: 30px auto 0;" onclick="mudarTela('tela3','tela1')">Voltar</button>
     </div>
 </section>
 
 <script>
-// DATA INICIAL: 06/04/2024 (Mês 3 no JS)
 const dataInicio = new Date(2024, 3, 6, 0, 0, 0); 
 
 function atualizarContador() {
     const agora = new Date();
     const dif = agora - dataInicio;
-
-    // Cálculo do tempo total
     const d = Math.floor(dif / (1000 * 60 * 60 * 24));
     const h = Math.floor((dif % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
@@ -279,7 +295,6 @@ function atualizarContador() {
     document.getElementById('minutos').innerText = m;
     document.getElementById('segundos').innerText = s;
 
-    // Cálculo para os 2 anos (06/04/2026)
     const niver2Anos = new Date(2026, 3, 6, 0, 0, 0);
     const faltam = niver2Anos - agora;
     
@@ -288,6 +303,22 @@ function atualizarContador() {
         document.getElementById('countdown-niver').innerText = `Faltam apenas ${diasFaltam} dias para nossos 2 anos! ✨`;
     } else {
         document.getElementById('countdown-niver').innerText = `Parabéns pelos nossos 2 anos! 💜`;
+    }
+}
+
+// Lógica da Música
+const audio = document.getElementById('musicaRelacionamento');
+const btnM = document.getElementById('btnMusica');
+
+function controlarMusica() {
+    if (audio.paused) {
+        audio.play();
+        btnM.innerText = "Pausar Música ⏸";
+        btnM.style.background = "#b497ff";
+    } else {
+        audio.pause();
+        btnM.innerText = "Play Música 🎵";
+        btnM.style.background = "#6a4c93";
     }
 }
 
@@ -322,4 +353,3 @@ function iniciarCoracoes() {
 
 </body>
 </html>
-
