@@ -143,7 +143,6 @@ body, html {
     z-index: 999;
 }
 
-/* ESTILOS DO CONTADOR LILÁS */
 .contador-container {
     margin-top: 30px;
     padding: 20px;
@@ -191,7 +190,6 @@ body, html {
     padding-top: 10px;
 }
 
-/* ESTILO DO PLAYER */
 .musica-container {
     margin-top: 25px;
     padding: 10px;
@@ -266,14 +264,15 @@ body, html {
             <div id="countdown-niver" class="proximo-niver"></div>
         </div>
 
-        <div class="musica-container" style="margin-top: 25px; padding: 10px; background: rgba(189, 178, 255, 0.2); border-radius: 50px; border: 1px solid #bdb2ff; display: inline-block;">
-    <button class="botao" id="btnMusica" onclick="controlarMusica()" style="margin-top: 0; padding: 10px 25px;">
-        Play Música 🎵
-    </button>
-    <audio id="musicaRelacionamento" preload="auto" loop>
-        <source src="./nossa-musica.mp3" type="audio/mp3">
-    </audio>
-</div>
+        <div class="musica-container">
+            <button class="botao" id="btnMusica" onclick="controlarMusica()" style="margin-top: 0; padding: 10px 25px;">
+                Play Música 🎵
+            </button>
+            <audio id="musicaRelacionamento" preload="auto" loop>
+                <source src="./nossa-musica.mp3" type="audio/mp3">
+                <source src="./nossa-musica.mp3" type="audio/mpeg">
+            </audio>
+        </div>
 
         <button class="botao" style="display: block; margin: 30px auto 0;" onclick="mudarTela('tela3','tela1')">Voltar</button>
     </div>
@@ -306,15 +305,21 @@ function atualizarContador() {
     }
 }
 
-// Lógica da Música
-const audio = document.getElementById('musicaRelacionamento');
-const btnM = document.getElementById('btnMusica');
+// Lógica da Música Aprimorada
+let audio = document.getElementById('musicaRelacionamento');
+let btnM = document.getElementById('btnMusica');
 
 function controlarMusica() {
+    if (!audio) audio = document.getElementById('musicaRelacionamento');
+    if (!btnM) btnM = document.getElementById('btnMusica');
+
     if (audio.paused) {
-        audio.play();
-        btnM.innerText = "Pausar Música ⏸";
-        btnM.style.background = "#b497ff";
+        audio.play().then(() => {
+            btnM.innerText = "Pausar Música ⏸";
+            btnM.style.background = "#b497ff";
+        }).catch(error => {
+            console.error("Erro ao tocar:", error);
+        });
     } else {
         audio.pause();
         btnM.innerText = "Play Música 🎵";
@@ -330,7 +335,10 @@ function mudarTela(sair, entrar) {
     if(sair === 'tela3') document.getElementById('tela3').scrollTop = 0;
     setTimeout(function() {
         document.getElementById(entrar).classList.remove("escondida");
-        if(entrar === "tela3") iniciarCoracoes();
+        if(entrar === "tela3") {
+            iniciarCoracoes();
+            if(audio) audio.load(); // Pré-carrega ao entrar na tela 3
+        }
     }, 300);
 }
 
@@ -353,5 +361,3 @@ function iniciarCoracoes() {
 
 </body>
 </html>
-
-
