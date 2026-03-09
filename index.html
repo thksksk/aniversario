@@ -250,7 +250,7 @@ body, html {
         </div>
 
         <p class="texto-romantico">
-            Desde o dia que te conheci, eu tive a certeza de quem seria o amor da minha vida inteira, e hoje posso prestigiar esse grande momento do seus quase 18 anos. Hoje vejo suas evoluções, o quão mais madura se tornou, e a cada dia a minha certeza que você vai ser a mãe dos meus filhos aumenta. Fiz esse presente na intenção de ser único, esse "site" foi feito só pra uma pessoa, a que me alegra todos os dias, que purifica minha paz, que melhora todos os meus dias, que me estressa as vezes.. Mas o mais importante é que o nosso amor só cresce cada vez mais. Quero te agradecer por tudo que fez e faz por mim, por todos os momentos, até de brigas, porque querendo ou não estamos aprendendo a conviver sempre melhor um com o outro, e eu espero que goste do seu tão misterioso presente. Eu te amo eternamente meu amor, obrigada por tudo. <br><br><b>FELIZ SABOOORR IDADE ADULTA🤍</b>
+            Desde o dia que te conheci, eu tive a certeza de quem seria o amor da minha vida inteira, e hoje posso prestigiar esse grande momento do seus quase 18 anos. Hoje vejo suas evoluções, o quão mais madura se tornou, e a cada dia a minha certeza que você vai ser a mãe dos meus filhos aumenta. Fiz esse presente na intenção de ser único, esse "site" foi feito só pra uma pessoa, a que me alegra todos os dias, que purifica minha paz, que melhora todos os meus dias, que me estressa as vezes.. Mas o mais importante é que o nosso amor só cresce cada vez mais. Quero te agradecer por tudo que fez e faz por mim, por todos os momentos, até de brigas, porque querendo ou não estamos aprendendo a conviver sempre melhor um com o outro, e eu espero que goste do seu tão misterioso presente. Eu te amo eternamente meu amor, obrigada por tudo. <br><br><b>FELIZ SABOOORR IDADE ADULTA🤍</b> 
         </p>
 
         <div class="contador-container">
@@ -268,9 +268,8 @@ body, html {
             <button class="botao" id="btnMusica" onclick="controlarMusica()" style="margin-top: 0; padding: 10px 25px;">
                 Play Música 🎵
             </button>
-            <audio id="musicaRelacionamento" preload="auto" loop>
-                <source src="./nossa-musica.mp3" type="audio/mp3">
-                <source src="./nossa-musica.mp3" type="audio/mpeg">
+            <audio id="musicaRelacionamento" loop preload="auto">
+                <source src="nossa-musica.mp3" type="audio/mpeg">
             </audio>
         </div>
 
@@ -284,34 +283,39 @@ const dataInicio = new Date(2024, 3, 6, 0, 0, 0);
 function atualizarContador() {
     const agora = new Date();
     const dif = agora - dataInicio;
+
     const d = Math.floor(dif / (1000 * 60 * 60 * 24));
     const h = Math.floor((dif % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((dif % (1000 * 60)) / 1000);
 
-    document.getElementById('dias').innerText = d;
-    document.getElementById('horas').innerText = h;
-    document.getElementById('minutos').innerText = m;
-    document.getElementById('segundos').innerText = s;
+    const elDias = document.getElementById('dias');
+    const elHoras = document.getElementById('horas');
+    const elMin = document.getElementById('minutos');
+    const elSeg = document.getElementById('segundos');
+
+    if(elDias) elDias.innerText = d;
+    if(elHoras) elHoras.innerText = h;
+    if(elMin) elMin.innerText = m;
+    if(elSeg) elSeg.innerText = s;
 
     const niver2Anos = new Date(2026, 3, 6, 0, 0, 0);
     const faltam = niver2Anos - agora;
+    const elNiver = document.getElementById('countdown-niver');
     
-    if (faltam > 0) {
-        const diasFaltam = Math.ceil(faltam / (1000 * 60 * 60 * 24));
-        document.getElementById('countdown-niver').innerText = `Faltam apenas ${diasFaltam} dias para nossos 2 anos! ✨`;
-    } else {
-        document.getElementById('countdown-niver').innerText = `Parabéns pelos nossos 2 anos! 💜`;
+    if (elNiver) {
+        if (faltam > 0) {
+            const diasFaltam = Math.ceil(faltam / (1000 * 60 * 60 * 24));
+            elNiver.innerText = `Faltam apenas ${diasFaltam} dias para nossos 2 anos! ✨`;
+        } else {
+            elNiver.innerText = `Parabéns pelos nossos 2 anos! 💜`;
+        }
     }
 }
 
-// Lógica da Música Aprimorada
-let audio = document.getElementById('musicaRelacionamento');
-let btnM = document.getElementById('btnMusica');
-
 function controlarMusica() {
-    if (!audio) audio = document.getElementById('musicaRelacionamento');
-    if (!btnM) btnM = document.getElementById('btnMusica');
+    const audio = document.getElementById('musicaRelacionamento');
+    const btnM = document.getElementById('btnMusica');
 
     if (audio.paused) {
         audio.play().then(() => {
@@ -319,6 +323,7 @@ function controlarMusica() {
             btnM.style.background = "#b497ff";
         }).catch(error => {
             console.error("Erro ao tocar:", error);
+            alert("Certifique-se que o arquivo 'nossa-musica.mp3' está no seu GitHub!");
         });
     } else {
         audio.pause();
@@ -333,11 +338,11 @@ atualizarContador();
 function mudarTela(sair, entrar) {
     document.getElementById(sair).classList.add("escondida");
     if(sair === 'tela3') document.getElementById('tela3').scrollTop = 0;
+    
     setTimeout(function() {
         document.getElementById(entrar).classList.remove("escondida");
         if(entrar === "tela3") {
             iniciarCoracoes();
-            if(audio) audio.load(); // Pré-carrega ao entrar na tela 3
         }
     }, 300);
 }
